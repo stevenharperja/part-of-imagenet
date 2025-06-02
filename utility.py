@@ -666,7 +666,7 @@ class Utils:
             # restructuring the download report for this ncode
             ncode_dataframe = pd.DataFrame([])
             for data_json in ncode_report:
-                ncode_dataframe = ncode_dataframe.append(data_json, ignore_index=True)
+                ncode_dataframe = pd.concat([ncode_dataframe, pd.DataFrame([data_json])], ignore_index=True)
             ncode_report_csv_path = os.path.join(folder_path, category_name + "_download_report.csv")
             ncode_dataframe.to_csv(ncode_report_csv_path, index=False)
             print("Download complete in {} secs\n\n".format(time.time() - total_start_time))
